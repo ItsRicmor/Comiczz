@@ -1,12 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { ComicState } from '../models'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ComicResponsePayload, ComicState } from '../models'
 import { getComics } from './comics.effetcs'
 
 export const initialState: ComicState = {
     isLoading: false,
     hasError: false,
     error: '',
-    items: []
+    items: [],
+    total: 0
 }
 
 export const comicSlice = createSlice({
@@ -21,11 +22,12 @@ export const comicSlice = createSlice({
                     isLoading: true
                 };
             })
-            .addCase(getComics.fulfilled, (state, action) => {
+            .addCase(getComics.fulfilled, (state, action: PayloadAction<ComicResponsePayload>) => {
                 return {
                     ...state,
                     isLoading: false,
-                    items: [...state.items, ...action.payload]
+                    total: action.payload.total,
+                    items: [...state.items, ...action.payload.items]
                 }
             })
             .addCase(getComics.rejected, (state, action) => {

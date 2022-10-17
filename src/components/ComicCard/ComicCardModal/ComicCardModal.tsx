@@ -40,8 +40,8 @@ export const ComicCardModal = ({ open, toggle, comic }: Props) => {
                         <ComicCardModalLabel title="Year of release:" value={dateFormated} />
                         <ComicCardModalLabel title="Format:" value={comic.format} />
                         <ComicCardModalLabel title="Pages:" value={comic.pageCount.toString()} />
-                        <ComicCardModalLabel title="Characters:" value={comic.characters.join(", ")} />
-                        {comic.characters.length > 0 && <ComicCardModalLabel title="Creators:" value={comic.creators.join(", ")} />}
+                        {comic.characters.length > 0 && <ComicCardModalLabel title="Characters:" value={comic.characters.join(", ")} />}
+                        <ComicCardModalLabel title="Creators:" value={comic.creators.join(", ")} />
                         {!!comic.diamondCode && <ComicCardModalLabel title="DiamondCode:" value={comic.diamondCode} />}
                     </div>
                     <div className="d-flex justify-content-between">

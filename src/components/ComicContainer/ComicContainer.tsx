@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Spinner } from "reactstrap";
 import { v4 as uuidv4 } from 'uuid';
 
 import { Comic } from "../../store/comics/models";
@@ -7,9 +8,10 @@ import { ComicCardModal } from "../ComicCard/ComicCardModal/ComicCardModal";
 
 type Props = {
     items: Comic[];
+    isLoading: boolean;
 }
 
-export const ComicContainer = ({ items }: Props) => {
+export const ComicContainer = ({ items, isLoading }: Props) => {
     const [open, setOpen] = useState(false);
     const [comicSelected, setComicSelected] = useState<Comic | null>(null);
 
@@ -29,6 +31,15 @@ export const ComicContainer = ({ items }: Props) => {
                     ))
                 }
             </div>
+            {
+                isLoading && (
+                    <div className="d-flex justify-content-center align-items-center w-100 mt-3 mb-5">
+                        <Spinner>
+                            Loading...
+                        </Spinner>
+                    </div>
+                )
+            }
             <ComicCardModal open={open} comic={comicSelected as Comic} toggle={toggle} />
         </>
     )
