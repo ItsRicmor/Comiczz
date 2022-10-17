@@ -1,0 +1,20 @@
+.comic-card {
+    max-width: 200px;
+    border: 2px solid #000;
+    .card-body {
+
+        img {
+            object-fit: cover;
+            object-position: left;
+        }
+
+        .card-title {
+            height: 72px;
+            display: -webkit-box;
+            max-width: 166px;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+}

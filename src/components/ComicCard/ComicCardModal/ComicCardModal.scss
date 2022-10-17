@@ -1,0 +1,43 @@
+.modal-dialog {
+    .modal-content {
+        img {
+            margin-right: 15px;
+            object-fit: cover;
+            object-position: left;
+        }
+
+        div {
+            div {
+                .xmark {
+                    width: 14px;
+                    position: absolute;
+                    right: -10px;
+                    top: -10px;
+                    cursor: pointer;
+                }
+
+                .h5 {
+                    font-size: 17px;
+                }
+
+                .h6 {
+                    font-size: 15px;
+                }
+
+                .fw-light {
+                    font-family: sans-serif;
+                    margin-left: 5px;
+                }
+
+                .price {
+                    line-height: 35px;
+                }
+
+                button {
+                    width: 140px;
+                    height: 38px;
+                }
+            }
+        }
+    }
+}
