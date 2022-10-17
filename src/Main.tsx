@@ -1,19 +1,17 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { ComicFormat } from './constants/ComicFormatTypes.enum';
 import { RoutesMap } from './constants/RoutesMap.enum';
-import { ComicPage } from './pages/comic.page';
-import { DigitalComicPage } from './pages/digital-comic.page';
-import { MagazinePage } from './pages/magazine.page';
 
-const HomePage = React.lazy(() => import('./pages/home.page'))
+const ComicPage = React.lazy(() => import('./pages/comic.page'))
 
 export const Main = () => {
     return (
         <Routes>
-            <Route path={RoutesMap.Home} element={<HomePage />} />
-            <Route path={RoutesMap.Comic} element={<ComicPage />} />
-            <Route path={RoutesMap.Magazine} element={<MagazinePage />} />
-            <Route path={RoutesMap.DigitalComic} element={<DigitalComicPage />} />
+            <Route path={RoutesMap.Home} element={<ComicPage format={ComicFormat.All} />} />
+            <Route path={RoutesMap.Comic} element={<ComicPage format={ComicFormat.Comic} />} />
+            <Route path={RoutesMap.Magazine} element={<ComicPage format={ComicFormat.Magazine} />} />
+            <Route path={RoutesMap.DigitalComic} element={<ComicPage format={ComicFormat.DigitalComic} />} />
         </Routes>
     );
 }

@@ -16,7 +16,8 @@ export interface Comic {
 
 export interface ComicState extends BaseState {
     total: number;
-    items: Comic[]
+    items: Comic[];
+    formatSelected: ComicFormat;
 }
 
 export interface ComicPayload {
@@ -26,7 +27,7 @@ export interface ComicPayload {
 }
 export interface ComicResponsePayload {
     items: Comic[];
-    total: number; 
+    total: number;
 }
 
 export const jsonToComicBuilder = (json: any): Partial<Comic> => {

@@ -1,10 +1,16 @@
+import { ComicContainer } from "../components/ComicContainer/ComicContainer";
 import { ComicFormat } from "../constants/ComicFormatTypes.enum";
 import { useComicRequest } from "../hooks/useComicRequest";
 
-export const ComicPage = () => {
-  useComicRequest(ComicFormat.All)
+type Props = {
+  format: ComicFormat;
+}
 
+const ComicPage = ({ format }: Props) => {
+  const { items, isLoading } = useComicRequest(format)
   return (
-    <div>comic.page</div>
+    <ComicContainer isLoading={isLoading} items={items} />
   )
 }
+
+export default ComicPage;

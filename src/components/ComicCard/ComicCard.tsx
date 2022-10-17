@@ -1,8 +1,7 @@
-import React from 'react'
-import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
-import { Comic } from '../../store/comics/models'
+import { Button, Card, CardBody, CardText, CardTitle } from 'reactstrap';
+import { Comic } from '../../store/comics/models';
 
-import "./ComicCard.scss"
+import "./ComicCard.scss";
 
 export interface Props extends Comic {
     onOpen: (comic: Comic) => void;

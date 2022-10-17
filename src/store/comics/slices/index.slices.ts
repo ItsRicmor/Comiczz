@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ComicFormat } from '../../../constants/ComicFormatTypes.enum'
 import { ComicResponsePayload, ComicState } from '../models'
 import { getComics } from './comics.effetcs'
 
@@ -7,13 +8,21 @@ export const initialState: ComicState = {
     hasError: false,
     error: '',
     items: [],
-    total: 0
+    total: 0,
+    formatSelected: ComicFormat.All
 }
 
 export const comicSlice = createSlice({
     name: 'comics',
     initialState,
-    reducers: {},
+    reducers: {
+        selectFormat(state, action: PayloadAction<ComicFormat>) {
+            state.formatSelected = action.payload;
+        },
+        cleanComics(state) {
+            state.items = [];
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getComics.pending, (state) => {
@@ -38,3 +47,5 @@ export const comicSlice = createSlice({
             });
     }
 })
+
+export const { cleanComics, selectFormat } = comicSlice.actions

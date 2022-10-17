@@ -34,7 +34,7 @@ export const ComicCardModal = ({ open, toggle, comic }: Props) => {
                 <div className="d-flex flex-column justify-content-between w-100">
                     <div className="w-100 mt-2">
                         <div className="position-relative">
-                            <img className="xmark" src={XMark} onClick={toggle} />
+                            <img className="xmark" alt="xmark" src={XMark} onClick={toggle} />
                         </div>
                         <p className="h5">{comic.title}</p>
                         <ComicCardModalLabel title="Year of release:" value={dateFormated} />
