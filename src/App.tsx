@@ -1,8 +1,11 @@
+import { Layout } from "./layout/Layout";
+import { Main } from "./Main";
 
 const App = () => {
   return (
-    <div className="App">
-    </div>
+    <Layout>
+      <Main />
+    </Layout>
   );
 }
 

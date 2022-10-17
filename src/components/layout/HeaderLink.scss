@@ -1,0 +1,11 @@
+
+
+.nav-item {
+    .nav-link {
+        color: #FFF;
+
+        &.active-link {
+            color: #DD2C2C !important;
+        }
+    }
+}
