@@ -14,23 +14,50 @@ export interface Comic {
     diamondCode: string;
 }
 
+
+interface ComicItem {
+    name: string;
+}
+
+interface PriceItem {
+    type: string;
+    price: number;
+}
+
+interface DateItem {
+    type: string;
+    date: string;
+}
+
+export interface ComicResponse {
+    id: string;
+    title: string;
+    thumbnail: {
+        path: string;
+        extension: string;
+    },
+    pageCount: number;
+    characters: { items: ComicItem[] };
+    creators: { items: ComicItem[] };
+    format: string;
+    diamondCode: string;
+    prices: PriceItem[];
+    dates: DateItem[];
+}
+
 export interface ComicState extends BaseState {
     total: number;
     items: Comic[];
+    offset: number;
     formatSelected: ComicFormat;
 }
 
-export interface ComicPayload {
-    limit: number;
-    offset: number;
-    format: ComicFormat
-}
 export interface ComicResponsePayload {
     items: Comic[];
     total: number;
 }
 
-export const jsonToComicBuilder = (json: any): Partial<Comic> => {
+export const jsonToComicBuilder = (json: ComicResponse): Partial<Comic> => {
     return {
         id: json.id,
         title: json.title,

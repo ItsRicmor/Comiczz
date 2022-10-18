@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ComicFormat } from '../constants/ComicFormatTypes.enum';
 import { AppDispatch, RootState } from '../store';
 import { getComics } from '../store/comics/slices/comics.effetcs';
+import { nextPage } from '../store/comics/slices/index.slices';
 
 export const useComicRequest = (format: ComicFormat) => {
     const dispatch = useDispatch<AppDispatch>();
-    const { isLoading, items, total } = useSelector((state: RootState) => state.comics);
-    const [offset, setOffset] = useState(0)
+    const { isLoading, items, total, offset } = useSelector((state: RootState) => state.comics);
+
 
     // Handle user scrolling the page
     function handleUserScroll() {
@@ -19,15 +20,15 @@ export const useComicRequest = (format: ComicFormat) => {
 
         // check if user is near to the bottom of the body
         if (scrollTop + window.innerHeight + 50 >= scrollHeight) {
-            setOffset(prev => prev + 20);
+            dispatch(nextPage())
         }
     }
-
     useEffect(() => {
         if (total === 0 || total > items.length) {
-            dispatch(getComics({ limit: 20, offset, format }));
+            debugger
+            dispatch(getComics(format));
         }
-    }, [offset, dispatch, total, format])
+    }, [dispatch, total, format, offset])
 
     useEffect(() => {
         window.addEventListener("scroll", handleUserScroll);

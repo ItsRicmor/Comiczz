@@ -1,20 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ComicPayload, ComicState } from "../models";
+import { ComicFormat } from "../../../constants/ComicFormatTypes.enum";
+import { ComicState } from "../models";
 import { ComicService, IComicService } from "../services/ComicService";
 import { cleanComics, selectFormat } from "./index.slices";
 
 
 export const getComics = createAsyncThunk(
     'comics/getComics',
-    async (data: ComicPayload, ApiThunk) => {
-        const { comics: { formatSelected } } = ApiThunk.getState() as { comics: ComicState };
+    async (format: ComicFormat, ApiThunk) => {
+        const { comics: { formatSelected, offset } } = ApiThunk.getState() as { comics: ComicState };
 
-        if (data.format !== formatSelected) {
+        if (format !== formatSelected) {
             ApiThunk.dispatch(cleanComics());
-            ApiThunk.dispatch(selectFormat(data.format));
+            ApiThunk.dispatch(selectFormat(format));
         }
-        
-        const service: IComicService = new ComicService(data);
+
+        const service: IComicService = new ComicService(format, offset);
         return await service.requestComics();
     }
 );

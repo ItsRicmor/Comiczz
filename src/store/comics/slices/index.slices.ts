@@ -5,10 +5,9 @@ import { getComics } from './comics.effetcs'
 
 export const initialState: ComicState = {
     isLoading: false,
-    hasError: false,
-    error: '',
     items: [],
     total: 0,
+    offset: 0,
     formatSelected: ComicFormat.All
 }
 
@@ -16,11 +15,15 @@ export const comicSlice = createSlice({
     name: 'comics',
     initialState,
     reducers: {
+        nextPage(state) {
+            state.offset += 20;
+        },
         selectFormat(state, action: PayloadAction<ComicFormat>) {
             state.formatSelected = action.payload;
         },
         cleanComics(state) {
             state.items = [];
+            state.offset = 0;
         }
     },
     extraReducers: (builder) => {
@@ -48,4 +51,4 @@ export const comicSlice = createSlice({
     }
 })
 
-export const { cleanComics, selectFormat } = comicSlice.actions
+export const { cleanComics, selectFormat, nextPage } = comicSlice.actions
